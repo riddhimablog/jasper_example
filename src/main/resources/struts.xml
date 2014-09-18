@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+      "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+      "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="riddima" namespace="/" extends="struts-default">
+		<result-types>
+			<result-type name="jasper"
+				class="org.apache.struts2.views.jasperreports.JasperReportsResult"
+				default="false" />
+		</result-types>
+		<action name="jasper" class="com.riddima.jasper.JasperAction">
+			<result name="success" type="jasper">
+				<param name="location">/jasper/${jasperfileName}</param>
+				<param name="dataSource">myList</param>
+				<param name="format">${format}</param>
+				<param name="contentType">${contentType}</param>
+				<param name="contentDisposition">filename=${fileName}</param>
+				<param name="reportParameters">reportParams</param>
+				<param name="exportParameters">exportParameters</param>
+				<param name="imageServletUrl">/imageGet?imageName=</param>
+			</result>
+		</action>
+		<action name="imageGet" class="com.riddima.jasper.ImageAction">
+			<result name="success" type="stream">
+				<param name="contentType">${format}</param>
+				<param name="inputName">fileInputStream</param>
+			</result>
+		</action>
+
+	</package>
+</struts>

@@ -51,7 +51,7 @@ public class JasperAction extends ActionSupport {
 		myList = service.getUsers();
 		*/
 		
-		  // Normally we would provide a pre-compiled .jrxml file
+		// Normally we would provide a pre-compiled .jrxml file
         // or check to make sure we don't compile on every request.
         try {
             JasperCompileManager.compileReportToFile(
